@@ -41,7 +41,7 @@ import sys
 import threading
 import types
 import warnings
-from enum import Enum
+from enum import EnumMeta
 from functools import lru_cache, partial
 from typing import (
     Any,
@@ -774,7 +774,7 @@ def field_for_schema(
         )
 
     # enumerations
-    if issubclass(typ, Enum):
+    if isinstance(typ, EnumMeta):
         try:
             return marshmallow.fields.Enum(typ, **metadata)
         except AttributeError:
